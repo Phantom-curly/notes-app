@@ -31,29 +31,33 @@ A full‑stack note‑taking app with user authentication, rich text editing, an
 ```bash
 git clone https://github.com/your-username/notes-app.git
 cd notes-app
+```
+
 2. Backend
-bash
+
+```bash
 cd notes-app-server
 npm install
 cp .env.example .env   # add DATABASE_URL & JWT_SECRET
 npx prisma migrate dev
 npm run dev
-3. Frontend
-bash
-cd frontend
+```
+
+4. Frontend
+
+```bash
 npm install
 cp .env.example .env   # set VITE_API_URL
 npm run dev
 Open http://localhost:5173.
+```
 
 🔒 Environment Variables
-Variable	Description
+```
 DATABASE_URL	PostgreSQL connection string
 JWT_SECRET	Secret for JWT tokens
 VITE_API_URL	Backend URL
-
-📄 License
-MIT – see LICENSE.
+```
 
 👤 Author
 Dilmurod 
