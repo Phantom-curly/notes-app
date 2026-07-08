@@ -4,6 +4,9 @@ import type { ReactNode } from 'react';
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5001';
 // then use `${API_BASE}/api/register`
 
+console.log('🔵 VITE_API_URL from env:', import.meta.env.VITE_API_URL);
+console.log('🔵 PROD?', import.meta.env.PROD);
+
 interface User {
   id: number;
   email: string;
