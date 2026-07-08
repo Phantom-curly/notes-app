@@ -1,0 +1,49 @@
+.
+├── README.md
+├── index.html
+├── notes-app-server
+│   ├── middleware
+│   │   └── auth.ts
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── prisma
+│   │   └── schema.prisma
+│   ├── prisma.config.ts
+│   ├── src
+│   │   ├── generated
+│   │   │   └── prisma
+│   │   │       ├── browser.ts
+│   │   │       ├── client.ts
+│   │   │       ├── commonInputTypes.ts
+│   │   │       ├── enums.ts
+│   │   │       ├── internal
+│   │   │       │   ├── class.ts
+│   │   │       │   ├── prismaNamespace.ts
+│   │   │       │   └── prismaNamespaceBrowser.ts
+│   │   │       ├── libquery_engine-darwin-arm64.dylib.node
+│   │   │       ├── models
+│   │   │       │   └── Note.ts
+│   │   │       └── models.ts
+│   │   └── index.ts
+│   └── tsconfig.json
+├── package-lock.json
+├── package.json
+├── public
+│   ├── favicon.svg
+│   └── icons.svg
+├── src
+│   ├── App.css
+│   ├── App.tsx
+│   ├── assets
+│   │   ├── hero.png
+│   │   ├── react.svg
+│   │   └── vite.svg
+│   ├── index.css
+│   └── main.tsx
+├── structure.txt
+├── tsconfig.app.json
+├── tsconfig.json
+├── tsconfig.node.json
+└── vite.config.ts
+
+12 directories, 35 files
