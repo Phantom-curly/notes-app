@@ -1,4 +1,3 @@
-markdown
 # 📝 Notes App
 
 A full‑stack note‑taking app with user authentication, rich text editing, and a clean interface.
