@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import { Trash2 } from 'lucide-react';
 import { useAuth } from './context/AuthContext';
 import { getAuthHeaders } from './utils/api';
-import { useNavigate } from 'react-router-dom';
 import RichTextEditor from './components/RichTextEditor';
 
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5001';
@@ -26,7 +25,6 @@ const NotesApp = () => {
   const [sortOrder, setSortOrder] = useState('desc');
 
   const { logout } = useAuth();
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchNotes = async () => {
