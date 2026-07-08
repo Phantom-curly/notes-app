@@ -14,7 +14,7 @@ const prisma = new PrismaClient();
 
 app.use(express.json());
 
-const allowedOrigins = ['https://your-frontend-url.vercel.app', 'http://localhost:5173'];
+const allowedOrigins = [  'https://notes-app-delta-self.vercel.app', 'http://localhost:5173'];
 app.use(
   cors({
     origin: allowedOrigins,
