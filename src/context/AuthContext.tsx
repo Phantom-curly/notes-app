@@ -23,7 +23,7 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  console.log('API_BASE:', import.meta.env.VITE_API_URL);
+  
   const [user, setUser] = useState<User | null>(() => {
     const stored = localStorage.getItem('user');
     return stored ? JSON.parse(stored) : null;
@@ -33,30 +33,30 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   });
 
   const login = async (email: string, password: string) => {
-    const res = await fetch(`${API_BASE}/api/login`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password }),
-    });
-    if (!res.ok) {
-      const error = await res.json();
-      throw new Error(error.error || 'Login failed');
-    }
-    const data = await res.json();
-    setUser(data.user);
-    setToken(data.token);
-    localStorage.setItem('user', JSON.stringify(data.user));
-    localStorage.setItem('token', data.token);
-  };
+  const response = await fetch(`${API_BASE}/api/login`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, password }),
+  });
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.error || 'Login failed');
+  }
+  const data = await response.json();
+  setUser(data.user);
+  setToken(data.token);
+  localStorage.setItem('user', JSON.stringify(data.user));
+  localStorage.setItem('token', data.token);
+};
 
   const register = async (email: string, password: string) => {
-    const res = await fetch(`${API_BASE}/api/register`, {
+    const response = await fetch(`${API_BASE}/api/register`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password }),
     });
-    if (!res.ok) {
-      const error = await res.json();
+    if (!response.ok) {
+      const error = await response.json();
       throw new Error(error.error || 'Registration failed');
     }
     // Auto-login after registration
