@@ -1,8 +1,7 @@
 import { createContext, useState, useContext } from 'react';
 import type { ReactNode } from 'react';
 
-const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5001';
-// then use `${API_BASE}/api/register`
+const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5001';// then use `${API_BASE}/api/register`
 
 console.log('🔵 VITE_API_URL from env:', import.meta.env.VITE_API_URL);
 console.log('🔵 PROD?', import.meta.env.PROD);
@@ -33,15 +32,20 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   });
 
   const login = async (email: string, password: string) => {
-  const response = await fetch(`${API_BASE}/api/login`, {
+  console.log('🔵 Login called, API_BASE:', API_BASE); // Debug
+  console.log('🔵 Full URL:', `${API_BASE}/api/login`); // Debug
+
+  const response = await fetch('https://notes-app-tpma.onrender.com/api/login', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email, password }),
   });
+
   if (!response.ok) {
     const error = await response.json();
     throw new Error(error.error || 'Login failed');
   }
+
   const data = await response.json();
   setUser(data.user);
   setToken(data.token);
@@ -50,7 +54,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 };
 
   const register = async (email: string, password: string) => {
-    const response = await fetch(`${API_BASE}/api/register`, {
+    const response = await fetch('https://notes-app-tpma.onrender.com/api/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password }),
