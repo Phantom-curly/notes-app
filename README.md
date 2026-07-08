@@ -1,32 +1,60 @@
-# React + TypeScript + Vite
+markdown
+# 📝 Notes App
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A full‑stack note‑taking app with user authentication, rich text editing, and a clean interface.
 
-Currently, two official plugins are available:
+🔗 **Live Demo**: [https://your-frontend-url.vercel.app]()  
+🔗 **API**: [https://your-backend-url.onrender.com/api/notes]()
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## ✨ Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- 🔐 JWT authentication (login / register)
+- ✍️ Rich text editor (bold, italic, lists, quotes)
+- 🏷️ Organise notes with tags and search/filter
+- 📱 Responsive design
 
-## Expanding the Oxlint configuration
+---
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+## 🛠️ Tech Stack
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
+- **Frontend**: React, TypeScript, Vite, TipTap  
+- **Backend**: Node.js, Express, Prisma, PostgreSQL  
+- **Deployment**: Vercel (frontend), Render (backend)
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+---
+
+## 🚀 Quick Start
+
+### 1. Clone & Install
+
+```bash
+git clone https://github.com/your-username/notes-app.git
+cd notes-app
+2. Backend
+bash
+cd notes-app-server
+npm install
+cp .env.example .env   # add DATABASE_URL & JWT_SECRET
+npx prisma migrate dev
+npm run dev
+3. Frontend
+bash
+cd frontend
+npm install
+cp .env.example .env   # set VITE_API_URL
+npm run dev
+Open http://localhost:5173.
+
+🔒 Environment Variables
+Variable	Description
+DATABASE_URL	PostgreSQL connection string
+JWT_SECRET	Secret for JWT tokens
+VITE_API_URL	Backend URL
+
+📄 License
+MIT – see LICENSE.
+
+👤 Author
+Dilmurod 
