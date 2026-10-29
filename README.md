@@ -2,8 +2,7 @@
 
 A full‑stack note‑taking app with user authentication, rich text editing, and a clean interface.
 
-🔗 **Live Demo**: [https://your-frontend-url.vercel.app]()  
-🔗 **API**: [https://your-backend-url.onrender.com/api/notes]()
+🔗 **Live Demo**: [https://notes-app-delta-self.vercel.app/]()  
 
 ---
 
