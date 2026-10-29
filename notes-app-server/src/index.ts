@@ -61,9 +61,9 @@ app.post('/api/notes', authenticate, async (req: AuthRequest, res) => {
   }
 });
 
-app.put('/api/notes/:id', async (req, res) => {
+app.put('/api/notes/:id', authenticate, async (req: AuthRequest, res) => {
   const { title, content, tag } = req.body;
-  const id = parseInt(req.params.id);
+  const id = parseInt(req.params.id as string);
 
   if (!title || !content) {
     return res.status(400).send('title and content fields required');
@@ -73,7 +73,18 @@ app.put('/api/notes/:id', async (req, res) => {
     return res.status(400).send('ID must be a valid number');
   }
 
+  const userId = req.user?.userId;
+  if (!userId) {
+    return res.status(401).json({ error: 'User not authenticated' });
+  }
+
   try {
+    // 404 (not 403) for other users' notes, so IDs can't be probed
+    const note = await prisma.note.findFirst({ where: { id, userId } });
+    if (!note) {
+      return res.status(404).json({ error: 'Note not found' });
+    }
+
     const updatedNote = await prisma.note.update({
       where: { id },
       data: { title, content, tag },
@@ -85,17 +96,25 @@ app.put('/api/notes/:id', async (req, res) => {
   }
 });
 
-app.delete('/api/notes/:id', async (req, res) => {
-  const id = parseInt(req.params.id);
+app.delete('/api/notes/:id', authenticate, async (req: AuthRequest, res) => {
+  const id = parseInt(req.params.id as string);
 
   if (!id || isNaN(id)) {
     return res.status(400).send('ID field required');
   }
 
+  const userId = req.user?.userId;
+  if (!userId) {
+    return res.status(401).json({ error: 'User not authenticated' });
+  }
+
   try {
-    await prisma.note.delete({
-      where: { id },
+    const { count } = await prisma.note.deleteMany({
+      where: { id, userId },
     });
+    if (count === 0) {
+      return res.status(404).json({ error: 'Note not found' });
+    }
     res.status(204).send();
   } catch (error) {
     console.error(error);
